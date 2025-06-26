@@ -28,7 +28,6 @@ testing {
 
         register<JvmTestSuite>("integrationTest") {
             useJUnitJupiter()
-            testType.set(TestSuiteType.INTEGRATION_TEST)
 
             dependencies {
                 implementation(project())

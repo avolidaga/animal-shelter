@@ -69,9 +69,3 @@ docker compose exec kafka-1 kafka-metadata-shell.sh \
 docker compose exec kafka-2 bash
 $ kafka-console-consumer.sh --topic events --bootstrap-server localhost:9092 --from-beginning
 ```
-
-## Progress
-
-- [x] Lab1 complete
-- [x] Lab2 complete
-- [x] Lab3 in progress
