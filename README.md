@@ -1,25 +1,11 @@
 ## Local development (Linux/WSL/macOS only)
 
-### IDE
-
-- install `detekt` plugin in IntelliJ IDEA. Set config in `Preferences -> Tools -> detekt -> Configuration file` to `detekt.yml`
-
 ### Run via docker
-
-Add to `.env` file:
-```sh
-JWT_SECRET_ACCESS=0LHQvtC20LUg0L/QvtC80L7Qs9C4INC90LDQvCDQt9Cw0LrRgNGL0YLRjCDRjdGC0L7RgiDQv9GA0LXQtNC80LXRgg==
-
-# optionally
-TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/run/user/501/docker.sock
-DOCKER_HOST=/var/run/docker.sock
-```
 
 build App + run App and PostgresqlDB:
 ```sh
-. ./.env
 gradle jibDockerBuild 
-docker-compose up
+docker compose up
 ```
 
 ### Run DB in docker and App in IDE
@@ -33,10 +19,6 @@ docker-compose up db
 ## Liquibase
 
 Для написания файлов миграций используется YAML.
-
-При изменении схемы БД нужно:
-- создать директорию changelog-<version> в resources/db/changelog 
-- добавить в нее файлы с изменениями (например, tables.yaml, procedures.yaml)
 
 Структура:
 
@@ -69,3 +51,28 @@ docker compose exec kafka-1 kafka-metadata-shell.sh \
 docker compose exec kafka-2 bash
 $ kafka-console-consumer.sh --topic events --bootstrap-server localhost:9092 --from-beginning
 ```
+
+## Тестирование на стенде
+
+Swagger находится по адрессу 
+```
+http://89.169.185.177:8080/webjars/swagger-ui/index.html
+```
+
+Тестовый пользователь
+```json
+{
+  "login": "customer",
+  "password": "1234"
+}
+```
+
+Тестовый админ
+```json
+{
+  "login": "amanager",
+  "password": "1234"
+}
+```
+
+
